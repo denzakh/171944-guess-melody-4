@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`welcome-screen отображается корректно 1`] = `
+exports[`welcome-screen sh 1`] = `
 <section
   className="welcome"
 >
@@ -16,6 +16,7 @@ exports[`welcome-screen отображается корректно 1`] = `
   </div>
   <button
     className="welcome__button"
+    onClick={[Function]}
   >
     <span
       className="visually-hidden"
