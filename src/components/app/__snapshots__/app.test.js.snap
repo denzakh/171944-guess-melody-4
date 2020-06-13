@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`app sh 1`] = `
+exports[`App component should render App component markup 1`] = `
 <section
   className="welcome"
 >

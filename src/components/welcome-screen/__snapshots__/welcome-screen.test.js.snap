@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`welcome-screen sh 1`] = `
+exports[`WelcomeScreen component should render App component markup 1`] = `
 <section
   className="welcome"
 >

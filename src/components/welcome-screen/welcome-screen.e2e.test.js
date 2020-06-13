@@ -7,15 +7,17 @@ Enzyme.configure({
   adapter: new Adapter
 })
 
-it(`push-start-btn`, ()=>{
-  const onStartBtnClick = jest.fn();
+describe(`App e2e`, ()=>{
+  it(`should call handlerStart on start button click event`, ()=>{
+    const onStartBtnClick = jest.fn();
 
-  const welcomeScreen = shallow(
-    <WelcomeScreen time={1} errorCount={5} handlerStart={onStartBtnClick}  />
-  );
+    const welcomeScreen = shallow(
+      <WelcomeScreen time={1} errorCount={5} handlerStart={onStartBtnClick}  />
+    );
 
-  const startBtn = welcomeScreen.find(`.welcome__button`);
-  startBtn.simulate(`click`);
+    const startBtn = welcomeScreen.find(`.welcome__button`);
+    startBtn.simulate(`click`);
 
-  expect(onStartBtnClick).toHaveBeenCalledTimes(1);
+    expect(onStartBtnClick).toHaveBeenCalledTimes(1);
+  });
 });

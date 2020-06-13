@@ -2,18 +2,12 @@ import React from "react";
 import renderer from "react-test-renderer";
 import App from "./app.jsx";
 
-let testData = {
-  handlerStart: () => {
-    console.log("start");
-  },
-  gameTime: 5,
-  errorCount: 1
-}
+let handlerStart = ()=>{};
 
-describe(`app`, ()=>{
-  it(`sh`, () => {
+describe(`App component`, ()=>{
+  it(`should render App component markup`, () => {
     const tree = renderer.create(
-        <App gameTime={testData.gameTime} errorCount={testData.errorCount} handlerStart={testData.handlerStart} />
+        <App gameTime={5} errorCount={1} handlerStart={handlerStart} />
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });
