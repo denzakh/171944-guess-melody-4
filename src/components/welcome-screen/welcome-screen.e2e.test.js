@@ -4,7 +4,7 @@ import Adapter from "enzyme-adapter-react-16";
 import WelcomeScreen from "./welcome-screen.jsx";
 
 Enzyme.configure({
-  adapter: new Adapter
+  adapter: new Adapter()
 });
 
 describe(`App e2e`, ()=>{
@@ -12,7 +12,7 @@ describe(`App e2e`, ()=>{
     const onStartBtnClick = jest.fn();
 
     const welcomeScreen = shallow(
-      <WelcomeScreen time={1} errorCount={5} handlerStart={onStartBtnClick} />
+        <WelcomeScreen time={1} errorCount={5} handlerStart={onStartBtnClick} />
     );
 
     const startBtn = welcomeScreen.find(`.welcome__button`);
