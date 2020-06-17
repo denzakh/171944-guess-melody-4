@@ -10,8 +10,12 @@ const App = (props) => {
 
   const handlerStart = () => {};
 
-  const artistData = questions.filter((item)=>{return item.type === `artist`});
-  const genreData = questions.filter((item)=>{return item.type === `genre`});
+  const artistData = questions.filter((item)=>{
+    return item.type === `artist`;
+  });
+  const genreData = questions.filter((item)=>{
+    return item.type === `genre`;
+  });
 
   return (
     <BrowserRouter>
@@ -32,8 +36,7 @@ const App = (props) => {
 
 export default App;
 
-// App.propTypes = {
-//   gameTime: PropTypes.number.isRequired,
-//   errorCount: PropTypes.number.isRequired,
-//   handlerStart: PropTypes.func.isRequired
-// };
+App.propTypes = {
+  questions: PropTypes.array.isRequired,
+  settings: PropTypes.array.isRequired
+};

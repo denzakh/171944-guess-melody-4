@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const QuestionGenre = (props) => {
 
-  const {genre, question, answers} = props.questionData;
+  const {question, answers} = props.questionData;
 
   return (
 
@@ -25,18 +25,18 @@ const QuestionGenre = (props) => {
       <section className="game__screen">
         <h2 className="game__title">{question}</h2>
         <form className="game__tracks">
-        {answers.map((item, i)=>{
-          return <div className="track"  key={item.src}>
-            <button className="track__button track__button--play" type="button" />
-            <div className="track__status">
-              <audio src={item.src} />
-            </div>
-            <div className="game__answer">
-              <input className="game__input visually-hidden" type="checkbox" name="answer" defaultValue={`answer-${i}`} id={`answer-${i}`} />
-              <label className="game__check" htmlFor={`answer-${i}`}>Отметить</label>
-            </div>
-          </div>
-        })}
+          {answers.map((item, i)=>{
+            return <div className="track" key={`${item.genre}-${i}`}>
+              <button className="track__button track__button--play" type="button" />
+              <div className="track__status">
+                <audio src={item.src} />
+              </div>
+              <div className="game__answer">
+                <input className="game__input visually-hidden" type="checkbox" name="answer" defaultValue={`answer-${i}`} id={`answer-${i}`} />
+                <label className="game__check" htmlFor={`answer-${i}`}>Отметить</label>
+              </div>
+            </div>;
+          })}
           <button className="game__submit button" type="submit">Ответить</button>
         </form>
       </section>
@@ -51,10 +51,10 @@ QuestionGenre.propTypes = {
     question: PropTypes.string.isRequred,
     genre: PropTypes.string.isRequred,
     answers: PropTypes.arrayOf(
-      PropTypes.shape({
-        genre: PropTypes.string.isRequred,
-        src: PropTypes.string.isRequred
-      })
+        PropTypes.shape({
+          genre: PropTypes.string.isRequred,
+          src: PropTypes.string.isRequred
+        })
     )
   }),
 };

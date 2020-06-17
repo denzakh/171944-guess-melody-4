@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const QuestionArtist = (props) => {
 
-  const {question, song, answers} = props.questionData;
+  const {question, answers} = props.questionData;
 
   return (
     <section className="game game--artist">
@@ -39,7 +39,7 @@ const QuestionArtist = (props) => {
                 <img className="artist__picture" src={item.picture} alt={item.artist} />
                 {item.artist}
               </label>
-            </div>
+            </div>;
           })}
         </form>
       </section>
@@ -54,10 +54,10 @@ QuestionArtist.propTypes = {
     question: PropTypes.string.isRequred,
     song: PropTypes.string.isRequred,
     answers: PropTypes.arrayOf(
-      PropTypes.shape({
-        genre: PropTypes.string.isRequred,
-        src: PropTypes.string.isRequred
-      })
+        PropTypes.shape({
+          genre: PropTypes.string.isRequred,
+          src: PropTypes.string.isRequred
+        })
     )
   }),
 };
