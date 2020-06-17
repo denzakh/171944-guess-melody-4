@@ -1,7 +1,9 @@
 import React from "react";
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 const QuestionArtist = (props) => {
+
+  const {question, song, answers} = props.questionData;
 
   return (
     <section className="game game--artist">
@@ -20,7 +22,7 @@ const QuestionArtist = (props) => {
         </div>
       </header>
       <section className="game__screen">
-        <h2 className="game__title">Кто исполняет эту песню?</h2>
+        <h2 className="game__title">{question}</h2>
         <div className="game__track">
           <div className="track">
             <button className="track__button track__button--play" type="button" />
@@ -30,27 +32,15 @@ const QuestionArtist = (props) => {
           </div>
         </div>
         <form className="game__artist">
-          <div className="artist">
-            <input className="artist__input visually-hidden" type="radio" name="answer" defaultValue="artist-1" id="answer-1" />
-            <label className="artist__name" htmlFor="answer-1">
-              <img className="artist__picture" src="http://placehold.it/134x134" alt="Пелагея" />
-              Пелагея
-            </label>
-          </div>
-          <div className="artist">
-            <input className="artist__input visually-hidden" type="radio" name="answer" defaultValue="artist-2" id="answer-2" />
-            <label className="artist__name" htmlFor="answer-2">
-              <img className="artist__picture" src="http://placehold.it/134x134" alt="Пелагея" />
-              Краснознаменная дивизия имени моей бабушки
-            </label>
-          </div>
-          <div className="artist">
-            <input className="artist__input visually-hidden" type="radio" name="answer" defaultValue="artist-3" id="answer-3" />
-            <label className="artist__name" htmlFor="answer-3">
-              <img className="artist__picture" src="http://placehold.it/134x134" alt="Пелагея" />
-              Lorde
-            </label>
-          </div>
+          {answers.map((item, i)=>{
+            return <div className="artist" key={item.artist}>
+              <input className="artist__input visually-hidden" type="radio" name="answer" defaultValue={`artist-${i}`} id={`answer-artist-${i}`} />
+              <label className="artist__name" htmlFor={`answer-${i}`}>
+                <img className="artist__picture" src={item.picture} alt={item.artist} />
+                {item.artist}
+              </label>
+            </div>
+          })}
         </form>
       </section>
     </section>
@@ -58,3 +48,16 @@ const QuestionArtist = (props) => {
 };
 
 export default QuestionArtist;
+
+QuestionArtist.propTypes = {
+  questionData: PropTypes.shape({
+    question: PropTypes.string.isRequred,
+    song: PropTypes.string.isRequred,
+    answers: PropTypes.arrayOf(
+      PropTypes.shape({
+        picture: PropTypes.string.isRequred,
+        artist: PropTypes.string.isRequred
+      })
+    )
+  }),
+};
