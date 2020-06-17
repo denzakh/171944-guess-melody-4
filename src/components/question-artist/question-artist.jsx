@@ -55,8 +55,8 @@ QuestionArtist.propTypes = {
     song: PropTypes.string.isRequred,
     answers: PropTypes.arrayOf(
       PropTypes.shape({
-        picture: PropTypes.string.isRequred,
-        artist: PropTypes.string.isRequred
+        genre: PropTypes.string.isRequred,
+        src: PropTypes.string.isRequred
       })
     )
   }),
