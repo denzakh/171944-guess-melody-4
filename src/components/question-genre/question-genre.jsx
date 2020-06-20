@@ -7,7 +7,7 @@ class QuestionGenre extends React.Component {
     super(props);
 
     this.state = {
-      answerCheckList: [false,false,false,false]
+      answerCheckList: [false, false, false, false]
     };
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -27,13 +27,12 @@ class QuestionGenre extends React.Component {
     answerCheckList[id] = !answerCheckList[id];
 
     this.setState({
-      answerCheckList: answerCheckList
-    })
+      answerCheckList
+    });
   }
 
   render() {
     const {question, answers} = this.props.questionData;
-    const onAnswer = this.props.onAnswer;
 
     return (
       <section className="game game--genre">
@@ -72,9 +71,7 @@ class QuestionGenre extends React.Component {
       </section>
     );
   }
-
-
-};
+}
 
 export default QuestionGenre;
 

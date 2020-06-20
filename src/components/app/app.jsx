@@ -20,13 +20,13 @@ class App extends React.PureComponent {
   onAnswer() {
     this.setState((prevState) => ({
       step: prevState.step + 1
-    }))
+    }));
   }
 
   onStart() {
     this.setState({
       step: 0
-    })
+    });
   }
 
   getStartScreen() {
@@ -44,8 +44,8 @@ class App extends React.PureComponent {
       );
     }
 
-    if(question) {
-      switch(question.type) {
+    if (question) {
+      switch (question.type) {
         case `genre`:
           return (
             <GenreQuestionScreen questionData={question} onAnswer={this.onAnswer} />
@@ -56,10 +56,12 @@ class App extends React.PureComponent {
           );
       }
     }
+
+    return null;
   }
 
   render() {
-    const {questions, settings} = this.props;
+    const {questions} = this.props;
 
     const artistData = questions.filter((item)=>{
       return item.type === `artist`;
@@ -75,16 +77,16 @@ class App extends React.PureComponent {
             {this.getStartScreen()}
           </Route>
           <Route exact path="/dev-artist">
-            <ArtistQuestionScreen questionData={artistData[0]}  onAnswer={this.onAnswer} />
+            <ArtistQuestionScreen questionData={artistData[0]} onAnswer={this.onAnswer} />
           </Route>
           <Route exact path="/dev-genre">
-            <GenreQuestionScreen questionData={genreData[0]}  onAnswer={this.onAnswer} />
+            <GenreQuestionScreen questionData={genreData[0]} onAnswer={this.onAnswer} />
           </Route>
         </Switch>
       </BrowserRouter>
-    )
-  };
-};
+    );
+  }
+}
 
 export default App;
 
