@@ -5,38 +5,90 @@ import WelcomeScreen from "../welcome-screen/welcome-screen";
 import ArtistQuestionScreen from "../question-artist/question-artist";
 import GenreQuestionScreen from "../question-genre/question-genre";
 
-const App = (props) => {
-  const {questions, settings} = props;
+class App extends React.PureComponent {
 
-  const handlerStart = () => {};
+  constructor(props) {
+    super(props);
+    this.state = {
+      step: -1
+    };
 
-  const artistData = questions.filter((item)=>{
-    return item.type === `artist`;
-  });
-  const genreData = questions.filter((item)=>{
-    return item.type === `genre`;
-  });
+    this.onAnswer = this.onAnswer.bind(this);
+    this.onStart = this.onStart.bind(this);
+  }
 
-  return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/">
-          <WelcomeScreen time={settings.gameTime} errorCount={settings.errorCount} handlerStart={handlerStart} />;
-        </Route>
-        <Route exact path="/dev-artist">
-          <ArtistQuestionScreen questionData={artistData[0]} />
-        </Route>
-        <Route exact path="/dev-genre">
-          <GenreQuestionScreen questionData={genreData[0]} />
-        </Route>
-      </Switch>
-    </BrowserRouter>
-  );
+  onAnswer() {
+    this.setState((prevState) => ({
+      step: prevState.step + 1
+    }))
+  }
+
+  onStart() {
+    this.setState({
+      step: 0
+    })
+  }
+
+  getStartScreen() {
+    const {questions, settings} = this.props;
+    const {step} = this.state;
+    const question = questions[step];
+
+    if (step < 0 || step >= questions.length) {
+      return (
+        <WelcomeScreen
+          time={settings.gameTime}
+          errorsCount={settings.errorsCount}
+          onStart={this.onStart}
+        />
+      );
+    }
+
+    if(question) {
+      switch(question.type) {
+        case `genre`:
+          return (
+            <GenreQuestionScreen questionData={question} onAnswer={this.onAnswer} />
+          );
+        case `artist`:
+          return (
+            <ArtistQuestionScreen questionData={question} onAnswer={this.onAnswer} />
+          );
+      }
+    }
+  }
+
+  render() {
+    const {questions, settings} = this.props;
+
+    const artistData = questions.filter((item)=>{
+      return item.type === `artist`;
+    });
+    const genreData = questions.filter((item)=>{
+      return item.type === `genre`;
+    });
+
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/">
+            {this.getStartScreen()}
+          </Route>
+          <Route exact path="/dev-artist">
+            <ArtistQuestionScreen questionData={artistData[0]}  onAnswer={this.onAnswer} />
+          </Route>
+          <Route exact path="/dev-genre">
+            <GenreQuestionScreen questionData={genreData[0]}  onAnswer={this.onAnswer} />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    )
+  };
 };
 
 export default App;
 
 App.propTypes = {
   questions: PropTypes.array.isRequired,
-  settings: PropTypes.array.isRequired
+  settings: PropTypes.object.isRequired
 };

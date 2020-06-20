@@ -1,6 +1,7 @@
 const settings = {
+  type: `artist`,
   gameTime: 5,
-  errorCount: 3,
+  errorsCount: 3,
 };
 
 export default settings;

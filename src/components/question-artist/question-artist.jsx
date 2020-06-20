@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 
 const QuestionArtist = (props) => {
 
-  const {question, answers} = props.questionData;
+  const {question, answers, song} = props.questionData;
+  const onAnswer = props.onAnswer;
+  const step = props.step;
 
   return (
     <section className="game game--artist">
@@ -27,17 +29,23 @@ const QuestionArtist = (props) => {
           <div className="track">
             <button className="track__button track__button--play" type="button" />
             <div className="track__status">
-              <audio />
+              <audio src={song.src} />
+            }
             </div>
           </div>
         </div>
         <form className="game__artist">
-          {answers.map((item, i)=>{
-            return <div className="artist" key={item.artist}>
-              <input className="artist__input visually-hidden" type="radio" name="answer" defaultValue={`artist-${i}`} id={`answer-artist-${i}`} />
+          {answers.map((answer, i)=>{
+            return <div className="artist" key={answer.artist}>
+              <input className="artist__input visually-hidden"
+                type="radio" name="answer" value={`answer-${i}`} id={`answer-${i}`}
+                onChange={(e)=>{
+                  e.preventDefault();
+                  onAnswer(question, answer);
+                }} />
               <label className="artist__name" htmlFor={`answer-${i}`}>
-                <img className="artist__picture" src={item.picture} alt={item.artist} />
-                {item.artist}
+              <img className="artist__picture" src={answer.picture} alt={answer.artist} />
+                {answer.artist}
               </label>
             </div>;
           })}
@@ -50,14 +58,15 @@ const QuestionArtist = (props) => {
 export default QuestionArtist;
 
 QuestionArtist.propTypes = {
+  onAnswer: PropTypes.func.isRequired,
   questionData: PropTypes.shape({
-    question: PropTypes.string.isRequred,
-    song: PropTypes.string.isRequred,
+    question: PropTypes.string.isRequired,
+    song: PropTypes.objectOf(PropTypes.string),
     answers: PropTypes.arrayOf(
         PropTypes.shape({
-          genre: PropTypes.string.isRequred,
-          src: PropTypes.string.isRequred
+          picture: PropTypes.string.isRequired,
+          artist: PropTypes.string.isRequired
         })
     )
-  }),
+  })
 };

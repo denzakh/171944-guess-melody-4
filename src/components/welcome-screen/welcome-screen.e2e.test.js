@@ -12,7 +12,7 @@ describe(`App e2e`, ()=>{
     const onStartBtnClick = jest.fn();
 
     const welcomeScreen = shallow(
-        <WelcomeScreen time={1} errorCount={5} handlerStart={onStartBtnClick} />
+        <WelcomeScreen time={1} errorCount={5} onStart={onStartBtnClick} />
     );
 
     const startBtn = welcomeScreen.find(`.welcome__button`);

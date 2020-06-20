@@ -26,21 +26,21 @@ export default [
     type: `artist`,
     question: `Кто исполняет эту песню?`,
     song: {
-      artist: `Jim Beam`,
-      src: ``
+      artist: `Roxette`,
+      src: `https://upload.wikimedia.org/wikipedia/ru/7/70/Roxette%27_The_Look.ogg`
     },
     answers: [
       {
-        picture: `http://placehold.it/134x134`,
+        picture: `https://api.adorable.io/avatars/134/pelagea.png`,
         artist: `Пелагея`
       },
       {
-        picture: `http://placehold.it/134x134`,
+        picture: `https://api.adorable.io/avatars/134/babushka.png`,
         artist: `Краснознаменная дивизия имени моей бабушки`
       },
       {
-        picture: `http://placehold.it/134x134`,
-        artist: `Lorde`
+        picture: `https://api.adorable.io/avatars/134/lorde.png`,
+        artist: `Roxette`
       }
     ]
   }
