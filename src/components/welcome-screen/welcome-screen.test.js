@@ -12,10 +12,8 @@ let testData = {
 describe(`WelcomeScreen component`, ()=>{
   it(`should render App component markup`, () => {
     const tree = renderer.create(
-        <WelcomeScreen time={testData.time} errorsCount={testData.errorsCount} handlerStart={testData.onStart} />
+        <WelcomeScreen time={testData.time} errorsCount={testData.errorsCount} onStart={testData.onStart} />
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });
 });
-
-

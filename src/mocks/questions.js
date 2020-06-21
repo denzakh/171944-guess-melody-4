@@ -39,7 +39,7 @@ export default [
         artist: `Краснознаменная дивизия имени моей бабушки`
       },
       {
-        picture: `https://api.adorable.io/avatars/134/lorde.png`,
+        picture: `https://api.adorable.io/avatars/134/roxette.png`,
         artist: `Roxette`
       }
     ]

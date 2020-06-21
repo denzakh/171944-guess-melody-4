@@ -44,7 +44,7 @@ exports[`App component should render App component markup 1`] = `
     </li>
     <li>
       Можно допустить 
-      1
+      3
        ошибки.
     </li>
   </ul>

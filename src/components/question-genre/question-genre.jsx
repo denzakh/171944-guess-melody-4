@@ -7,28 +7,17 @@ class QuestionGenre extends React.Component {
     super(props);
 
     this.state = {
-      answerCheckList: [false, false, false, false]
+      userAnswer: [false, false, false, false]
     };
 
     this.onSubmit = this.onSubmit.bind(this);
-    this.onChange = this.onChange.bind(this);
   }
 
   onSubmit(e) {
     e.preventDefault();
     const {question} = this.props.questionData;
 
-    this.props.onAnswer(question, this.state.answerCheckList);
-  }
-
-  onChange(e) {
-    let id = +e.target.dataset.id;
-    let answerCheckList = this.state.answerCheckList;
-    answerCheckList[id] = !answerCheckList[id];
-
-    this.setState({
-      answerCheckList
-    });
+    this.props.onAnswer(question, this.state.userAnswer);
   }
 
   render() {
@@ -52,7 +41,7 @@ class QuestionGenre extends React.Component {
         </header>
         <section className="game__screen">
           <h2 className="game__title">{question}</h2>
-          <form className="game__tracks">
+          <form className="game__tracks" onSubmit={this.onSubmit}>
             {answers.map((item, i)=>{
               return <div className="track" key={`${item.genre}-${i}`}>
                 <button className="track__button track__button--play" type="button" />
@@ -60,12 +49,21 @@ class QuestionGenre extends React.Component {
                   <audio src={item.src} />
                 </div>
                 <div className="game__answer">
-                  <input className="game__input visually-hidden" type="checkbox" name="answer" id={`answer-${i}`} onChange={this.onChange} checked={this.state.answerCheckList[i]} value={`answer-${i}`} data-id={i} />
+                  <input className="game__input visually-hidden" type="checkbox" name="answer" id={`answer-${i}`}  checked={this.state.userAnswer[i]}
+                    onChange={(e)=>{
+                      const value = e.target.checked;
+                      const userAnswer = this.state.userAnswer;
+
+                      this.setState({
+                        userAnswer: [...userAnswer.slice(0, i), value, ...userAnswer.slice(i + 1)],
+                      });
+                    }}
+                  />
                   <label className="game__check" htmlFor={`answer-${i}`}>Отметить</label>
                 </div>
               </div>;
             })}
-            <button className="game__submit button" type="submit" onClick={this.onSubmit} >Ответить</button>
+            <button className="game__submit button" type="submit"  >Ответить</button>
           </form>
         </section>
       </section>
