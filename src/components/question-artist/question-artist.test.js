@@ -23,7 +23,7 @@ const question = {
       artist: `Roxette`
     }
   ]
-}
+};
 
 describe(`QuestionArtist component`, ()=>{
   it(`should render QuestionArtist component markup`, () => {

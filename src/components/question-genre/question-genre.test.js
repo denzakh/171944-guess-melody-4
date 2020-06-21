@@ -24,7 +24,7 @@ const question = {
       src: `https://files.freemusicarchive.org/storage-freemusicarchive-org/music/West_Cortez_Records/David_Hilowitz/Gradual_Sunrise/David_Hilowitz_-_Gradual_Sunrise.mp3`
     }
   ]
-}
+};
 
 describe(`QuestionGenre component`, ()=>{
   it(`should render QuestionGenre component markup`, () => {

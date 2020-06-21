@@ -2,7 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import App from "./app.jsx";
 
-const questions =  [
+const questions = [
   {
     type: `genre`,
     genre: `rock`,

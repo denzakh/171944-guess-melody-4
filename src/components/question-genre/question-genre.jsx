@@ -49,7 +49,7 @@ class QuestionGenre extends React.Component {
                   <audio src={item.src} />
                 </div>
                 <div className="game__answer">
-                  <input className="game__input visually-hidden" type="checkbox" name="answer" id={`answer-${i}`}  checked={this.state.userAnswer[i]}
+                  <input className="game__input visually-hidden" type="checkbox" name="answer" id={`answer-${i}`} checked={this.state.userAnswer[i]}
                     onChange={(e)=>{
                       const value = e.target.checked;
                       const userAnswer = this.state.userAnswer;
@@ -63,7 +63,7 @@ class QuestionGenre extends React.Component {
                 </div>
               </div>;
             })}
-            <button className="game__submit button" type="submit"  >Ответить</button>
+            <button className="game__submit button" type="submit">Ответить</button>
           </form>
         </section>
       </section>

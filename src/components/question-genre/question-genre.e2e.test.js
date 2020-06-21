@@ -103,7 +103,9 @@ describe(`App e2e`, ()=>{
     // inputTwo.simulate(`change`, {target: {checked: true}});
     // однако у меня это не сработало (и не только у меня)
     // поэтому добавим функцию
-    let inputTwo = () => { return questionGenre.find(`input`).at(1) };
+    let inputTwo = () => {
+      return questionGenre.find(`input`).at(1);
+    };
     inputTwo().simulate(`change`, {target: {checked: true}});
 
     // теперь в стейте должно быть userAnswer: [false, true, false, false].
@@ -115,8 +117,3 @@ describe(`App e2e`, ()=>{
 
   });
 });
-
-
-
-
-
